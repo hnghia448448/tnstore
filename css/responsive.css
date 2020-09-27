@@ -15,7 +15,7 @@
     .menu-top #toggle {
         position: absolute;
         display: block!important;
-        right: 1em;
+        right: 0;
         font-size: 2em;
         z-index: 9999;
     }
@@ -23,9 +23,19 @@
 
 @media (max-width:720px) {
     .ct2 {
-        display: none;
+        margin-top: 2em !important;
     }
-    .menu-top .navbar-nav {
-        padding-top: 10%;
+    .menu-top {
+        height: 3em !important;
+        line-height: 3em !important;
+        box-shadow: none;
+    }
+    .menu-top .navbar-brand {
+        font-size: 1em !important;
+        letter-spacing: .1em;
+    }
+    .gia,
+    .tensp {
+        font-size: .8em !important;
     }
 }

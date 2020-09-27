@@ -36,7 +36,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="gioithieu.html" class="nav-link">
-                       Giới thiệu
+                        Giới thiệu
                     </a>
                 </li>
                 <li class="nav-item">
@@ -46,7 +46,7 @@
                 </li>
                 <li class="nav-item">
                     <a href="dangnhap.html" class="nav-link">
-                       Đăng nhập
+                        Đăng nhập
                     </a>
                 </li>
                 <li class="nav-item">
@@ -106,13 +106,51 @@
         <div class="containe-fluid mx-3 box1 ">
             <div class="row ">
                 <div class="col-md-4 col-lg-3 col-6 my-3 " v-for="sp in danhsachsanpham ">
-                    <div class="card ">
-                        <img :src="sp.anhsp " class="card-img-top " alt="#" />
-                        <div class="card-body ">
-                            <h5 class="card-title ">{{sp.tensp}}</h5>
-                            <p class="card-text "><i><s>{{sp.giacu}}</s></i> {{sp.gia}}</p>
-                            <a :href="sp.duonglink " class="btn btn-outline-primary btn-rounded waves-effect ">Detail</a>
+                    <div class="card card-ecommerce">
+                        <!-- Card image -->
+                        <div class="view overlay">
+                            <img :src="sp.anhsp" class="img-fluid" alt="">
+                            <a>
+                                <div class="mask rgba-white-slight"></div>
+                            </a>
                         </div>
+                        <!-- Card image -->
+                        <!-- Card content -->
+                        <div class="card-body">
+                            <!-- Category & Title -->
+                            <h5 class="card-title mb-1 tensp">
+                                <strong>
+                                    <a href="" class="dark-grey-text">{{sp.tensp}}</a>
+                                </strong>
+                            </h5>
+                            <span class="badge grey mb-2">best sale</span>
+                            <!-- Rating -->
+                            <ul class="rating">
+                                <li>
+                                    <i class="fas fa-star blue-text"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star blue-text"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star blue-text"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star blue-text"></i>
+                                </li>
+                                <li>
+                                    <i class="fas fa-star blue-text"></i>
+                                </li>
+                            </ul>
+                            <!-- Card footer -->
+                            <div class="card-footer pb-0">
+                                <div class="row mb-0 text-center">
+                                    <span class="col-12 col-md-6 col-lg-6 gia text-right"><strong>{{sp.gia}}</strong></span> <span class="gia text-left col-12 col-md-6 col-lg-6"><s>{{sp.giacu}}</s></span>
+                                    <button class="btn btn-info mb-1 btn-md waves-effect ">Detail</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Card content -->
                     </div>
                 </div>
             </div>
