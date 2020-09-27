@@ -19,12 +19,6 @@
         font-size: 2em;
         z-index: 9999;
     }
-}
-
-@media (max-width:720px) {
-    .ct2 {
-        margin-top: 2em !important;
-    }
     .menu-top {
         height: 3em !important;
         line-height: 3em !important;
@@ -33,6 +27,12 @@
     .menu-top .navbar-brand {
         font-size: 1em !important;
         letter-spacing: .1em;
+    }
+}
+
+@media (max-width:720px) {
+    .ct2 {
+        margin-top: 2em !important;
     }
     .gia,
     .tensp {
