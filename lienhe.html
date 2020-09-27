@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Chi tiết sản phẩm</title>
+    <title>Liên hệ</title>
     <!-- MDB icon -->
     <link rel="icon" href="img/mdb-favicon.ico" type="image/x-icon">
     <!-- Font Awesome -->
@@ -44,7 +44,7 @@
                 </li>
                 <li class=" nav-item ">
                     <a href=" gioithieu.html " class=" nav-link ">
-                       Giới thiệu
+                        Giới thiệu
                     </a>
                 </li>
                 <li class=" nav-item ">
@@ -54,7 +54,7 @@
                 </li>
                 <li class=" nav-item ">
                     <a href=" dangnhap.html " class=" nav-link ">
-                       Đăng nhập
+                        Đăng nhập
                     </a>
                 </li>
                 <li class=" nav-item ">
@@ -69,35 +69,45 @@
 
     <!-- Default form contact -->
     <div id="app2">
-        <form class="text-center container border border-light p-5 mx-auto " action="#! " style="margin-top: 5em;">
-
+        <form name="frmLienHe" id="frmLienHe" method="post" novalidate="true" class="text-center container border border-light p-5 mx-auto " action="#" style="margin-top: 5em;" @submit="kiemTraDuLieu">
+            <div class="alert alert-danger" role="alert" v-if="hienThiThongBaoLoi()">
+                <b>Vui lòng kiểm tra lại các lỗi sau:</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </div>
+            <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
+            <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
+                <b>Dữ liệu đã nhập hợp lệ. Thông tin phản hồi đã được gửi đến máy chủ!!!</b>
+            </div>
             <p class="h4 mb-4 ">Contact us</p>
 
             <!-- Name -->
-            <input type="text " id="defaultContactFormName" class="form-control mb-4 " placeholder="Name ">
+            <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" v-model="hoten">
 
             <!-- Email -->
-            <input type="email " id="defaultContactFormEmail " class="form-control mb-4 " placeholder="E-mail ">
+            <input type="email" id="defaultContactFormEmail" class="form-control mb-4" placeholder="E-mail" v-model="email">
 
             <!-- Subject -->
             <label>Subject</label>
             <select class="browser-default custom-select mb-4 ">
-            <option value=" " disabled>Choose option</option>
-            <option value="1 " selected>Feedback</option>
-            <option value="2 ">Report a bug</option>
-            <option value="3 ">Feature request</option>
-            <option value="4 ">Feature request</option>
-        </select>
+                <option value=" " disabled>Choose option</option>
+                <option value="1 " selected>Feedback</option>
+                <option value="2 ">Report a bug</option>
+                <option value="3 ">Feature request</option>
+                <option value="4 ">Feature request</option>
+            </select>
 
             <!-- Message -->
             <div class="form-group ">
-                <textarea class="form-control rounded-0 " id="exampleFormControlTextarea2 " rows="3 " placeholder="Message "></textarea>
+                <textarea class="form-control rounded-0 " id="exampleFormControlTextarea2 " rows="3 " placeholder="Message" v-model="loinhan"></textarea>
             </div>
 
             <!-- Copy -->
             <div class="custom-control custom-checkbox mb-4 ">
-                <input type="checkbox " class="custom-control-input " id="defaultContactFormCopy ">
-                <label class="custom-control-label " for="defaultContactFormCopy ">Send me a copy of this message</label>
+                <input type="checkbox" class="custom-control-input" id="defaultContactFormCopy">
+                <label class="custom-control-label " for="defaultContactFormCopy ">Send me a copy of this
+                    message</label>
             </div>
 
             <!-- Send button -->
@@ -119,13 +129,96 @@
     <script src="vendor/vue/vue.js "></script>
     <!-- Your custom scripts (optional) -->
     <script type="text/javascript " src="js/main.js "></script>
-    <script src="assets/js/app.js "></script>
-    <script>
-        function alert1() {
-            alert('Sản phẩm không hiện có!!!\nChúng tôi sẽ liên lạc với bạn sau.')
-        }
-    </script>
 
+    <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
+    <script src="vendor/vue/vue.js"></script>
+    <script>
+        // Khởi tạo đối tượng (instance) Vue
+        var vue = new Vue({
+            el: '#app2',
+            data: {
+                // Tạo biến quản lý lỗi là mảng rỗng
+                errors: [],
+                // Tạo biến quản lý việc kiếm tra Ràng buộc dữ liệu (validation) hay chưa?
+                // Mặc định là chưa kiểm tra
+                dakiemtraloixong: false,
+                // Khởi tạo giá trị ban đầu cho FORM
+                hoten: '',
+                email: '',
+                loinhan: '',
+            },
+            methods: {
+                kiemTraDuLieu: function(e) {
+                    // Dừng sự kiện tiếp theo của FORM
+                    e.preventDefault();
+                    // Trước khi kiểm tra, cần reset lại biến lỗi
+                    // => Giả sử như chưa có lỗi xảy ra
+                    this.errors = [];
+                    this.dakiemtraloixong = false;
+                    // Validate Họ tên
+                    // Kiểm tra rỗng
+                    if (this.hoten == "") {
+                        this.errors.push('Vui lòng nhập Họ tên');
+                    } else if (this.hoten.length < 5) { // Kiểm tra độ dài
+                        this.errors.push('Vui lòng nhập Họ tên 5 ký tự trở lên');
+                    }
+                    // Validate Email
+                    // Kiểm tra rỗng
+                    if (this.email == "") {
+                        this.errors.push('Vui lòng nhập địa chỉ Email');
+                    } else if (this.email.length < 5) { // Kiểm tra độ dài
+                        this.errors.push('Vui lòng nhập địa chỉ Email 5 ký tự trở lên');
+                    } else if (!this.validateEmail(this.email)) { // Kiểm tra mẫu nhập EMAIL
+                        this.errors.push('Vui lòng nhập email đúng định dạng');
+                    }
+                    // Validate Lời nhắn
+                    // Kiểm tra rỗng
+                    if (this.loinhan == "") {
+                        this.errors.push('Vui lòng nhập lời nhắn');
+                    } else if (this.loinhan.length < 5) { // Kiểm tra độ dài
+                        this.errors.push('Vui lòng nhập lời nhắn 5 ký tự trở lên');
+                    }
+                    // Đã kiểm tra lỗi xong
+                    this.dakiemtraloixong = true;
+                    // Ví dụ demo, ngưng gởi dữ liệu SUBMIT đi
+                    // Always return false
+                    return false;
+                },
+                validateEmail: function(email) {
+                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                        return true;
+                    }
+                    return false;
+                },
+                hienThiThongBaoLoi: function() {
+                    // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
+                    if (this.dakiemtraloixong == false) {
+                        return false;
+                    }
+                    // Nếu có bất kỳ lỗi nào (mảng array lỗi không rỗng) => độ dài array > 0)
+                    // Có lỗi => được hiển thị thông báo lỗi
+                    if (this.errors.length > 0) {
+                        return true;
+                    }
+                    // Nếu không có lỗi thì không được hiển thị thông báo lỗi
+                    return false;
+                },
+                hienThiThongBaoChaoMung: function() {
+                    // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
+                    if (this.dakiemtraloixong == false) {
+                        return false;
+                    }
+                    // Nếu không có bất kỳ lỗi nào (mảng array lỗi là rỗng) => độ dài array == 0)
+                    // Không có lỗi => được hiển thị thông báo chào mừng
+                    if (this.errors.length == 0) {
+                        return true;
+                    }
+                    // Mặc định không hiển thị
+                    return false;
+                }
+            }
+        });
+    </script>
 </body>
 
 </html>
