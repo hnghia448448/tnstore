@@ -38,4 +38,8 @@
     .tensp {
         font-size: .6em !important;
     }
+    .gia {
+        display: inline !important;
+        text-align: center !important;
+    }
 }
