@@ -67,8 +67,8 @@
             </ul>
         </nav>
         <div>
-            <div class="container-fluid box1 " style="margin-top: 4.5em">
-                <div class="row">
+            <div class="containe-fluid mx-3 box1 " style="margin-top: 4.5em;">
+                <div class="row ">
                     <div class="col-md-4 col-lg-3 col-6 my-3 " v-for="sp in danhsachsanpham ">
                         <div class="card card-ecommerce">
                             <!-- Card image -->
@@ -106,8 +106,8 @@
                                                 <i class="fas fa-star blue-text"></i>
                                             </li>
                                         </ul>
-                                        <span class="col-12 col-md-6 col-lg-6 gia text-right"><strong>{{sp.gia}}</strong></span> <span class="gia text-left col-12 col-md-6 col-lg-6"><s>{{sp.giacu}}</s></span>
-                                        <button class="btn btn-info mb-1 btn-md waves-effect ">Detail</button>
+                                        <span class="col-12 col-md-6 col-lg-6 gia text-right text-sm-left text-muted">{{sp.gia}}</span> <span class="gia text-left col-12 col-md-6 col-lg-6"><s>{{sp.giacu}}</s></span>
+                                        <button class="btn btn-info mb-1 btn-sm waves-effect"><span style="font-size: .6em;">Detail</span></button>
                                     </div>
                                 </div>
                             </div>
