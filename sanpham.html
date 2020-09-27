@@ -106,8 +106,12 @@
                                                 <i class="fas fa-star blue-text"></i>
                                             </li>
                                         </ul>
-                                        <span class="col-12 col-md-6 col-lg-6 gia text-right text-sm-left text-muted">{{sp.gia}}</span> <span class="gia text-left col-12 col-md-6 col-lg-6"><s>{{sp.giacu}}</s></span>
-                                        <a :href="sp.duonglink"><button class="btn btn-info mb-1 btn-sm waves-effect"><span style="font-size: 1em;">Detail</span></button></a>
+                                        <span class="col-12 col-md-6 col-lg-6 gia text-right"><strong>{{sp.gia}}</strong></span> <span class="gia text-left col-12 col-md-6 col-lg-6"><s>{{sp.giacu}}</s></span>
+                                        <div class="text-center col-12 col-lg-12 col-md-12">
+                                            <a :href="sp.duonglink">
+                                                <div class="btn btn-info mb-1 btn-sm waves-effect mx-auto"><span style="font-size: 1em;">Detail</span></div>
+                                            </a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
