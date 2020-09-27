@@ -1,0 +1,65 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100vh;
+    width: 100vw;
+    overflow-x: hidden;
+}
+
+.showed {
+    display: block!important;
+}
+
+.menu-top {
+    height: 5em;
+    line-height: 5em;
+    box-shadow: none;
+}
+
+.menu-top #toggle {
+    display: none;
+}
+
+.menu-top .navbar-brand {
+    position: absolute;
+    left: 5%;
+    font-size: 2rem;
+    letter-spacing: .2em;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.menu-top .navbar-nav {
+    /*display: none;*/
+    /* position: relative; */
+}
+
+.menu-top .navbar-nav .nav-item {
+    text-transform: uppercase;
+    font-size: 1rem;
+    letter-spacing: .05rem;
+    font-weight: 600;
+    margin: 1em;
+}
+
+.navbar {
+    background-color: #4285f4;
+    padding-bottom: 1em;
+}
+
+.navbar a {
+    color: white;
+}
+
+.menu-top .navbar-nav .nav-item a:hover {
+    /* padding-top: .7em; */
+    transition: .6s all ease-in-out;
+}
+
+#app1 {
+    padding-bottom: 1.5em;
+}
