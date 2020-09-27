@@ -58,6 +58,26 @@ $(document).ready(function() {
                     gia: '1.999$',
                     duonglink: 'sanpham3.html',
                 },
+                {
+                    anhsp: 'assets/images/anh2.jpg',
+                    tensp: 'Samsung Galaxy Note 20 Ultra',
+                    giacu: '1.799$',
+                    gia: '1.599$',
+                    duonglink: 'sanpham2.html',
+                }, {
+                    anhsp: 'assets/images/anh3.jpg',
+                    tensp: 'iPhone 11 Pro 64GB',
+                    giacu: '2.199$',
+                    gia: '1.999$',
+                    duonglink: 'sanpham3.html',
+                },
+                {
+                    anhsp: 'assets/images/anh3.jpg',
+                    tensp: 'iPhone 11 Pro 64GB',
+                    giacu: '2.199$',
+                    gia: '1.999$',
+                    duonglink: 'sanpham3.html',
+                },
 
             ]
         },
