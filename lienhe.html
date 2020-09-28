@@ -70,6 +70,8 @@
     <!-- Default form contact -->
     <div id="app2">
         <form name="frmLienHe" id="frmLienHe" method="post" novalidate="true" class="text-center container border border-light p-5 mx-auto " action="#" style="margin-top: 5em;" @submit="kiemTraDuLieu">
+
+            <p class="h4 mb-4 ">Contact us</p>
             <div class="alert alert-danger" role="alert" v-if="hienThiThongBaoLoi()">
                 <b>Vui lòng kiểm tra lại các lỗi sau:</b>
                 <ul>
@@ -80,8 +82,6 @@
             <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
                 <b>Dữ liệu đã nhập hợp lệ. Thông tin phản hồi đã được gửi đến máy chủ!!!</b>
             </div>
-            <p class="h4 mb-4 ">Contact us</p>
-
             <!-- Name -->
             <input type="text" id="defaultContactFormName" class="form-control mb-4" placeholder="Name" v-model="hoten">
 

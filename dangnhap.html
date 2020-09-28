@@ -74,9 +74,6 @@
                 </ul>
             </div>
             <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
-            <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
-                <b>Dữ liệu đã nhập hợp lệ. Thông tin phản hồi đã được gửi đến máy chủ!!!</b>
-            </div>
             <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
             <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
                 <b>Đăng nhập thành công</b>
@@ -103,13 +100,15 @@
                 </div>
                 <div>
                     <!-- Forgot password -->
-                    <a href="">Forgot password?</a>
+                    <a href="#">Forgot password?</a>
                 </div>
             </div>
 
             <!-- Sign in button -->
-            <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign
-                in</button>
+            <div class="text-center my-3">
+                <button type="submit" class="btn btn-outline-info btn-block btn-rounded z-depth-1a text-muted">Sign
+                    in</button>
+            </div>
 
             <!-- Register -->
             <p>Not a member?
@@ -153,6 +152,7 @@
     <script type="text/javascript" src="js/main.js"></script>
     <script src="vendor/jquery/jquery-3.5.1.min.js"></script>
     <script src="vendor/vue/vue.js"></script>
+
     <script>
         // Khởi tạo đối tượng (instance) Vue
         var vue = new Vue({
@@ -177,65 +177,72 @@
                     this.dakiemtraloixong = false;
                     // Validate Họ tên
                     // Kiểm tra rỗng
+                    if (this.hoten == "") {
+                        this.errors.push('Vui lòng nhập Tên');
 
-                    if (this.email == "") {
-                        this.errors.push('Vui lòng nhập địa chỉ Email');
-                    } else if (this.email.length < 5) { // Kiểm tra độ dài
-                        this.errors.push('Vui lòng nhập địa chỉ Email 5 ký tự trở lên');
-                    } else if (!this.validateEmail(this.email)) { // Kiểm tra mẫu nhập EMAIL
-                        this.errors.push('Vui lòng nhập email đúng định dạng');
+                        if (this.lastname == "") {
+                            this.errors.push('Vui lòng Họ');
+                        }
+                        // Validate Email
+                        // Kiểm tra rỗng
+                        if (this.email == "") {
+                            this.errors.push('Vui lòng nhập địa chỉ Email');
+                        } else if (this.email.length < 5) { // Kiểm tra độ dài
+                            this.errors.push('Vui lòng nhập địa chỉ Email 5 ký tự trở lên');
+                        } else if (!this.validateEmail(this.email)) { // Kiểm tra mẫu nhập EMAIL
+                            this.errors.push('Vui lòng nhập email đúng định dạng');
+                        }
+                        // Validate Số điện thoại
+                        // Kiểm tra rỗng
+
+                        // Validate Lời nhắn
+                        // Kiểm tra rỗng
+                        if (this.password == "") {
+                            this.errors.push('Vui lòng nhập Password');
+                        } else if (this.password.length < 8) { // Kiểm tra độ dài
+                            this.errors.push('Vui lòng nhập password từ 8 kí tự trở lên');
+                        }
+
+                        // Đã kiểm tra lỗi xong
+                        this.dakiemtraloixong = true;
+                        // Ví dụ demo, ngưng gởi dữ liệu SUBMIT đi
+                        // Always return false
+                        return false;
                     }
-                    // Validate Số điện thoại
-                    // Kiểm tra rỗng
-
-                    // Validate Lời nhắn
-                    // Kiểm tra rỗng
-                    if (this.password == "") {
-                        this.errors.push('Vui lòng nhập Password');
-                    } else if (this.password.length < 8) { // Kiểm tra độ dài
-                        this.errors.push('Vui lòng nhập password từ 8 kí tự trở lên');
+                },
+                validateEmail: function(email) {
+                    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+                        return true;
                     }
-
-                    // Đã kiểm tra lỗi xong
-                    this.dakiemtraloixong = true;
-                    // Ví dụ demo, ngưng gởi dữ liệu SUBMIT đi
-                    // Always return false
+                    return false;
+                },
+                hienThiThongBaoLoi: function() {
+                    // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
+                    if (this.dakiemtraloixong == false) {
+                        return false;
+                    }
+                    // Nếu có bất kỳ lỗi nào (mảng array lỗi không rỗng) => độ dài array > 0)
+                    // Có lỗi => được hiển thị thông báo lỗi
+                    if (this.errors.length > 0) {
+                        return true;
+                    }
+                    // Nếu không có lỗi thì không được hiển thị thông báo lỗi
+                    return false;
+                },
+                hienThiThongBaoChaoMung: function() {
+                    // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
+                    if (this.dakiemtraloixong == false) {
+                        return false;
+                    }
+                    // Nếu không có bất kỳ lỗi nào (mảng array lỗi là rỗng) => độ dài array == 0)
+                    // Không có lỗi => được hiển thị thông báo chào mừng
+                    if (this.errors.length == 0) {
+                        return true;
+                    }
+                    // Mặc định không hiển thị
                     return false;
                 }
-            },
-            validateEmail: function(email) {
-                if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
-                    return true;
-                }
-                return false;
-            },
-            hienThiThongBaoLoi: function() {
-                // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
-                if (this.dakiemtraloixong == false) {
-                    return false;
-                }
-                // Nếu có bất kỳ lỗi nào (mảng array lỗi không rỗng) => độ dài array > 0)
-                // Có lỗi => được hiển thị thông báo lỗi
-                if (this.errors.length > 0) {
-                    return true;
-                }
-                // Nếu không có lỗi thì không được hiển thị thông báo lỗi
-                return false;
-            },
-            hienThiThongBaoChaoMung: function() {
-                // Nếu chưa vượt qua bước kiểm tra lỗi thì không được hiển thị thông báo
-                if (this.dakiemtraloixong == false) {
-                    return false;
-                }
-                // Nếu không có bất kỳ lỗi nào (mảng array lỗi là rỗng) => độ dài array == 0)
-                // Không có lỗi => được hiển thị thông báo chào mừng
-                if (this.errors.length == 0) {
-                    return true;
-                }
-                // Mặc định không hiển thị
-                return false;
             }
-
         });
     </script>
 
