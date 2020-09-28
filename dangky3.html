@@ -64,112 +64,77 @@
     <!-- Default form register -->
     <div id="app">
 
-        <!-- Material form register -->
-        <div class="card">
-
-
-
-            <!--Card content-->
-            <div class="card-body px-lg-5 pt-0">
-
-                <!-- Form -->
-                <form name="frmLienHe" id="frmLienHe" method="post" novalidate="true" class="text-center container border border-light p-5 mx-auto " action="#" style="margin-top: 5em;" @submit="kiemTraDuLieu">
-                    <p class="h4 ">Sign up</p>
-                    <div class="alert alert-danger" role="alert" v-if="hienThiThongBaoLoi()">
-                        <b>Vui lòng kiểm tra lại các lỗi sau:</b>
-                        <ul>
-                            <li v-for="error in errors">{{ error }}</li>
-                        </ul>
-                    </div>
-                    <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
-                    <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
-                        <b>Đăng ký thành công.</b>
-                    </div>
-
-                    <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
-                    <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
-                        <b>Đăng ký thành công</b>
-                    </div>
-                    <div class="form-row mb-4">
-                        <div class="col">
-                            <!-- First name -->
-                            <div class="md-form">
-                                <input type="text" id="materialRegisterFormFirstName" class="form-control" v-model="hoten">
-                                <label for="materialRegisterFormFirstName">First name</label>
-                            </div>
-                        </div>
-                        <div class="col">
-                            <!-- Last name -->
-                            <div class="md-form">
-                                <input type="email" id="materialRegisterFormLastName" class="form-control" v-model="lastname">
-                                <label for="materialRegisterFormLastName">Last name</label>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- E-mail -->
-                    <div class="md-form mt-0">
-                        <input type="email" id="materialRegisterFormEmail" class="form-control" v-model="email">
-                        <label for="materialRegisterFormEmail">E-mail</label>
-                    </div>
-
-                    <!-- Password -->
-                    <div class="md-form">
-                        <input type="password" id="materialRegisterFormPassword" class="form-control" aria-describedby="materialRegisterFormPasswordHelpBlock" v-model="password">
-                        <label for="materialRegisterFormPassword">Password</label>
-                        <small id="materialRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
-                    At least 8 characters and 1 digit
-                </small>
-                    </div>
-
-                    <!-- Phone number -->
-                    <div class="md-form">
-                        <input type="password" id="materialRegisterFormPhone" class="form-control" aria-describedby="materialRegisterFormPhoneHelpBlock" v-model="sodienthoai">
-                        <label for="materialRegisterFormPhone">Phone number</label>
-                        <small id="materialRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
-                    Optional - for two step authentication
-                </small>
-                    </div>
-
-                    <!-- Newsletter -->
-                    <div class="form-check">
-                        <input type="checkbox" class="form-check-input" id="materialRegisterFormNewsletter">
-                        <label class="form-check-label" for="materialRegisterFormNewsletter">Subscribe to our newsletter</label>
-                    </div>
-
-                    <!-- Sign up button -->
-                    <button class="btn btn-outline-info btn-rounded btn-block my-4 waves-effect z-depth-0" type="submit">Sign in</button>
-
-                    <!-- Social register -->
-                    <p>or sign up with:</p>
-
-                    <a type="button" class="btn-floating btn-fb btn-sm">
-                        <i class="fab fa-facebook-f"></i>
-                    </a>
-                    <a type="button" class="btn-floating btn-tw btn-sm">
-                        <i class="fab fa-twitter"></i>
-                    </a>
-                    <a type="button" class="btn-floating btn-li btn-sm">
-                        <i class="fab fa-linkedin-in"></i>
-                    </a>
-                    <a type="button" class="btn-floating btn-git btn-sm">
-                        <i class="fab fa-github"></i>
-                    </a>
-
-                    <hr>
-
-                    <!-- Terms of service -->
-                    <p>By clicking
-                        <em>Sign up</em> you agree to our
-                        <a href="" target="_blank">terms of service</a>
-
-                </form>
-                <!-- Form -->
-
+        <form name="frmLienHe" id="frmLienHe" method="post" novalidate="true" class="text-center container border border-light p-5 mx-auto " action="#" style="margin-top: 5em;" @submit="kiemTraDuLieu">
+            <p class="h4 ">Sign up</p>
+            <div class="alert alert-danger" role="alert" v-if="hienThiThongBaoLoi()">
+                <b>Vui lòng kiểm tra lại các lỗi sau:</b>
+                <ul>
+                    <li v-for="error in errors">{{ error }}</li>
+                </ul>
+            </div>
+            <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
+            <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
+                <b>Dữ liệu đã nhập hợp lệ. Thông tin phản hồi đã được gửi đến máy chủ!!!</b>
             </div>
 
-        </div>
-        <!-- Material form register -->
+            <!-- Nếu không có lỗi thì hiển thị thông báo chào mừng trong vùng này, sử dụng ALERT BOOTSTRAP -->
+            <div class="alert alert-success" role="alert" v-if="hienThiThongBaoChaoMung()">
+                <b>Đăng ký thành công</b>
+            </div>
+
+            <div class="form-row mb-4 ">
+                <div class="col ">
+                    <!-- First name -->
+                    <input type="text " id="defaultRegisterFormFirstName " class="form-control " placeholder="First name " v-model="hoten">
+                </div>
+                <div class="col ">
+                    <!-- Last name -->
+                    <input type="text " id="defaultRegisterFormLastName " class="form-control " placeholder="Last name " v-model="lastname">
+                </div>
+            </div>
+
+            <!-- E-mail -->
+            <input type="email" id="defaultRegisterFormEmail " class="form-control mb-4 " placeholder="E-mail " v-model="email">
+
+            <!-- Password -->
+            <input type="password" id="defaultRegisterFormPassword " class="form-control " placeholder="Password " aria-describedby="defaultRegisterFormPasswordHelpBlock" v-model="password">
+            <small id="defaultRegisterFormPasswordHelpBlock " class="form-text text-muted mb-4 ">
+                At least 8 characters and 1 digit
+            </small>
+
+            <!-- Phone number -->
+            <input type="text " id="defaultRegisterPhonePassword " class="form-control " placeholder="Phone number " aria-describedby="defaultRegisterFormPhoneHelpBlock " v-model="sodienthoai">
+            <small id="defaultRegisterFormPhoneHelpBlock " class="form-text text-muted mb-4">
+                Optional - for two step authentication
+            </small>
+
+            <!-- Newsletter -->
+            <div class="custom-control custom-checkbox ">
+                <input type="checkbox" class="custom-control-input " id="defaultRegisterFormNewsletter ">
+                <label class="custom-control-label " for="defaultRegisterFormNewsletter ">Subscribe to our
+                    newsletter</label>
+            </div>
+
+            <!-- Sign up button -->
+            <div class="text-center my-3">
+                <button type="submit" class="btn btn-outline-info btn-block btn-rounded z-depth-1a text-muted">Sign
+                    up</button>
+            </div>
+            <!-- Social register -->
+            <p>or sign up with:</p>
+
+            <a href="# " class="mx-2 " role="button "><i class="fab fa-facebook-f light-blue-text "></i></a>
+            <a href="# " class="mx-2 " role="button "><i class="fab fa-twitter light-blue-text "></i></a>
+            <a href="# " class="mx-2 " role="button "><i class="fab fa-linkedin-in light-blue-text "></i></a>
+            <a href="# " class="mx-2 " role="button "><i class="fab fa-github light-blue-text "></i></a>
+
+            <hr>
+
+            <!-- Terms of service -->
+            <p>By clicking
+                <em>Sign up</em> you agree to our terms of service
+
+        </form>
     </div>
     <!-- Default form register -->
     <!-- Material form login -->
